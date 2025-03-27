@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="ja" class="hide-scroll">
+    <head>
+        <title>KMNZ 1st Anniversary</title>
+        <link rel="stylesheet" type="text/css" href="./index.css">
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch('./participants.txt')
+                    .then(response => response.text())
+                    .then(data => {
+                        const lines = data.split('\n').filter(line => line.trim() !== '');
+                        const textContainer = document.querySelector('.text-container');
+                        let textBlock;
+
+                        lines.forEach((line, index) => {
+                            if (index % 4 === 0) {
+                                textBlock = document.createElement('div');
+                                textBlock.className = 'text-block';
+                                textContainer.appendChild(textBlock);
+                            }
+                            const span = document.createElement('span');
+                            span.textContent = line;
+                            textBlock.appendChild(span);
+                        });
+                    })
+                    .catch(error => console.error('Error loading participants:', error));
+            });
+        </script>
+    </head>
+    
+    <body>
+    <!-- 画像とタイトル -->
+    <div class="image-container">
+        <img src="./image/sample.avif" alt="背景画像">
+        <div class="title-overlay">KMNZ 1st Anniversary</div>
+    </div>
+
+    <div class="content-title">参加者</div>
+    <!-- 本文（4単語ずつ均等配置） -->
+    <div class="text-container">
+
+    </div>
+        <!--ここにparticipants.txtの内容が表示される-->
+    </body>
+
+</html>

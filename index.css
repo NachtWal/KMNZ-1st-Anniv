@@ -1,0 +1,89 @@
+/* === 画像コンテナ（最初は透明） === */
+.image-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* 画像サイズ */
+    margin: auto;
+    opacity: 0; /* 最初は非表示 */
+    animation: fadeInBg 1.5s ease-out 1s forwards; /* 1秒後にフェードイン */
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* === タイトル（最初は透明） === */
+.title-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0; /* 最初は非表示 */
+    animation: fadeInTitle 1s ease-out forwards; /* 1秒でフェードイン */
+}
+
+/* === 本文のタイトル（中央揃え） === */
+.content-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 40px 0;
+    opacity: 0; /* 最初は非表示 */
+    animation: fadeInContentTitle 1.5s ease-out 2.5s forwards; /* 2.5秒後にフェードイン */
+}
+
+/* === 本文の均等配置（最初は透明） === */
+.text-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* 全体を中央に */
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+    opacity: 0; /* 最初は非表示 */
+    animation: fadeInText 1.5s ease-out 4s forwards; /* 4秒後にフェードイン */
+}
+
+.text-block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+}
+
+.text-block span {
+    flex: 1;
+    text-align: center;
+    min-width: 100px;
+}
+
+/* === フェードインアニメーション === */
+@keyframes fadeInTitle {
+    0% { opacity: 0; transform: translate(-50%, -60%); }
+    100% { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+@keyframes fadeInBg {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeInContentTitle {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
