@@ -32,14 +32,25 @@
     animation: fadeInTitle 1s ease-out forwards; /* 1秒でフェードイン */
 }
 
-/* === 本文のタイトル（中央揃え） === */
-.content-title {
+.message {
     text-align: center;
-    font-size: 28px;
+    font-size: 20px;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 20px;
     font-weight: bold;
     margin: 40px 0;
     opacity: 0; /* 最初は非表示 */
-    animation: fadeInContentTitle 1.5s ease-out 2.5s forwards; /* 2.5秒後にフェードイン */
+    animation: fadeInMessage 1.5s ease-out 2.5s forwards; /* 2.5秒後にフェードイン */
+}
+/* === 本文のタイトル（中央揃え） === */
+.content-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 40px 0;
+    opacity: 0; /* 最初は非表示 */
+    animation: fadeInContentTitle 1.5s ease-out 3.5s forwards; /* 2.5秒後にフェードイン */
 }
 
 /* === 本文の均等配置（最初は透明） === */
@@ -76,6 +87,11 @@
 @keyframes fadeInBg {
     0% { opacity: 0; }
     100% { opacity: 1; }
+}
+
+@keyframes fadeInMessage {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInContentTitle {
