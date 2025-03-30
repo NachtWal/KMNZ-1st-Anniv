@@ -31,25 +31,56 @@
         <meta name="format-detection" content="email=no,telephone=no,address=no">
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                fetch('./participants.txt')
+                fetch('./participants.txt?nocache=' + new Date().getTime())
                     .then(response => response.text())
                     .then(data => {
                         const lines = data.split('\n').filter(line => line.trim() !== '');
                         const textContainer = document.querySelector('.text-container');
-                        let textBlock;
 
-                        lines.forEach((line, index) => {
-                            if (index % 4 === 0) {
-                                textBlock = document.createElement('div');
-                                textBlock.className = 'text-block';
-                                textContainer.appendChild(textBlock);
+                        let currentRow = [];
+                        let currentRowWidth = 0;
+                        const maxRowWidth = 4; // 標準は4単語
+                        const maxRowLength = 36;
+
+                        lines.forEach((word) => {
+                            const wordLength = word.length;
+
+                            // 長い単語がある場合、行を確定して次の行に移動
+                            if (currentRowWidth + wordLength > maxRowLength) {
+                                addRowToContainer(currentRow, textContainer);
+                                currentRow = [];
+                                currentRowWidth = 0;
                             }
-                            const span = document.createElement('span');
-                            span.textContent = line;
-                            textBlock.appendChild(span);
+
+                            currentRow.push(word);
+                            currentRowWidth += wordLength;
+
+                            // 標準の4単語に達した場合、行を確定
+                            if (currentRow.length === maxRowWidth) {
+                                addRowToContainer(currentRow, textContainer);
+                                currentRow = [];
+                                currentRowWidth = 0;
+                            }
                         });
+
+                        // 最後の行を追加
+                        if (currentRow.length > 0) {
+                            addRowToContainer(currentRow, textContainer);
+                        }
                     })
                     .catch(error => console.error('Error loading participants:', error));
+
+                // 行をコンテナに追加する関数
+                function addRowToContainer(row, container) {
+                    const textBlock = document.createElement('div');
+                    textBlock.className = 'text-block';
+                    row.forEach(word => {
+                        const span = document.createElement('span');
+                        span.textContent = word;
+                        textBlock.appendChild(span);
+                    });
+                    container.appendChild(textBlock);
+                }
             });
         </script>
     </head>
@@ -70,6 +101,10 @@
         <!-- 参加者（4名ずつ均等配置） -->
         <div class="text-container">
             <!--ここにparticipants.txtの内容が表示される-->
+        </div>
+
+        <div class="illustrator-name">
+            <p>1周年記念イラスト / 色鉛筆12色</p>
         </div>
     </body>
 
