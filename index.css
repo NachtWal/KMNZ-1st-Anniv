@@ -50,32 +50,62 @@
     font-weight: bold;
     margin: 40px 0;
     opacity: 0; /* 最初は非表示 */
-    animation: fadeInContentTitle 1.5s ease-out 3.5s forwards; /* 2.5秒後にフェードイン */
+    animation: fadeInContentTitle 1.5s ease-out 3.5s forwards; /* 3.5秒後にフェードイン */
 }
 
 /* === 本文の均等配置（最初は透明） === */
+/* コンテナ全体の設定 */
 .text-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* 全体を中央に */
-    max-width: 800px;
+    flex-direction: column; /* 行を縦に並べる */
+    gap: 16px; /* 各行の間隔 */
+    max-width: 1200px; /* コンテナの最大幅 */
     margin: 20px auto;
     text-align: center;
-    opacity: 0; /* 最初は非表示 */
-    animation: fadeInText 1.5s ease-out 4s forwards; /* 4秒後にフェードイン */
 }
 
+/* 各行の設定 */
 .text-block {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
+    justify-content: center; /* 各行の単語を中央揃え */
+    gap: 16px; /* 単語間のスペース */
+    flex-wrap: wrap; /* 折り返しを有効化 */
 }
 
+/* 各単語の設定 */
 .text-block span {
-    flex: 1;
+    display: inline-block;
+    padding: 8px;
+    background-color: transparent; /* 背景色を透明に */
+    font-size: 16px; /* フォントサイズを調整 */
+    word-wrap: break-word; /* 長い単語を折り返す */
+    word-break: break-word; /* 長い単語を強制的に折り返す */
+    overflow-wrap: break-word; /* 長い単語を折り返す */
+}
+
+/* スマートフォン（768px以下）: 3列表示 */
+@media (max-width: 768px) {
+    .text-block span {
+        flex: 1 1 calc(33.33% - 16px); /* 3列表示 */
+        max-width: calc(33.33% - 16px);
+        text-align: center;
+    }
+}
+
+/* 超小型デバイス（480px以下）: 2列表示 */
+@media (max-width: 480px) {
+    .text-block span {
+        flex: 1 1 calc(50% - 16px); /* 2列表示 */
+        max-width: calc(50% - 16px);
+    }
+}
+
+.illustrator-name {
     text-align: center;
-    min-width: 100px;
+    font-size: 18px;
+    margin: 40px 0;
+    opacity: 0; /* 最初は非表示 */
+    animation: fadeInIllustratorName 1.5s ease-out 4.5s forwards; /* 4.5秒後にフェードイン */
 }
 
 /* === フェードインアニメーション === */
@@ -100,6 +130,11 @@
 }
 
 @keyframes fadeInText {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInIllustratorName {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
 }
