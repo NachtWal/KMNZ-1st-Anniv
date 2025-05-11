@@ -110,6 +110,13 @@
     animation: fadeInIllustratorName 1.5s ease-out 4.5s forwards; /* 4.5秒後にフェードイン */
 }
 
+.qr-image {
+    position: absolute; /* ページ内での絶対位置指定 */
+    bottom: 5px; /* 親要素の下からの距離 */
+    right: 16px; /* 親要素の右からの距離 */
+    max-width: 200px; /* QRコードのサイズ */
+}
+
 /* === フェードインアニメーション === */
 @keyframes fadeInTitle {
     0% { opacity: 0; transform: translate(-50%, -60%); }
@@ -139,4 +146,12 @@
 @keyframes fadeInIllustratorName {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
+}
+
+body {
+    position: relative; /* 擬似要素の絶対位置指定を有効にする */
+    min-height: 100vh; /* ページ全体の高さを確保 */
+    margin: 0; /* 余白をリセット */
+    padding: 0; /* 余白をリセット */
+    overflow-x: hidden; /* 横スクロールを防止 */
 }
