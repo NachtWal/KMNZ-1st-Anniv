@@ -111,9 +111,9 @@
 }
 
 .qr-image {
-    position: absolute; /* ページ内での絶対位置指定 */
-    bottom: 5px; /* 親要素の下からの距離 */
-    right: 16px; /* 親要素の右からの距離 */
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
     max-width: 200px; /* QRコードのサイズ */
 }
 
@@ -154,4 +154,32 @@ body {
     margin: 0; /* 余白をリセット */
     padding: 0; /* 余白をリセット */
     overflow-x: hidden; /* 横スクロールを防止 */
+}
+
+@media (min-width: 1024px) { /* 1024px以上の画面で設定 */
+    body::before,
+    body::after {
+        content: ""; /* 擬似要素を表示するための空コンテンツ */
+        position: absolute;
+        top: 0;
+        width: calc(5vw + 50px); /* 帯の幅 */
+        height: 100%; /* ページ全体の高さ */
+        background-color: #000000; /* 帯の色を指定 */
+        z-index: -1; /* 背景として表示 */
+    }
+
+    body::before {
+        left: 0; /* 左側に配置 */
+    }
+
+    body::after {
+        right: 0; /* 右側に配置 */
+    }
+
+    .qr-image {
+    position: absolute; /* ページ内での絶対位置指定 */
+    bottom: 5px; /* 親要素の下からの距離 */
+    right: calc(5vw + 75px); /* 親要素の右からの距離 */
+    max-width: 200px; /* QRコードのサイズ */
+    }
 }
