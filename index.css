@@ -103,6 +103,8 @@
 }
 
 .illustrator-name {
+    display: flex;
+    justify-self: center;
     text-align: center;
     font-size: 18px;
     margin: 40px 0;
@@ -114,7 +116,7 @@
     display: inline-block;
     justify-content: center;
     align-items: center;
-    max-width: 200px; /* QRコードのサイズ */
+    max-width: 180px; /* QRコードのサイズ */
 }
 
 /* === フェードインアニメーション === */
@@ -176,10 +178,5 @@ body {
         right: 0; /* 右側に配置 */
     }
 
-    .qr-image {
-    position: absolute; /* ページ内での絶対位置指定 */
-    bottom: 5px; /* 親要素の下からの距離 */
-    right: calc(5vw + 75px); /* 親要素の右からの距離 */
-    max-width: 200px; /* QRコードのサイズ */
-    }
+
 }
