@@ -102,14 +102,24 @@
     }
 }
 
-.illustrator-name {
-    display: flex;
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 自動で列を調整 */
     justify-self: center;
     text-align: center;
     font-size: 18px;
-    margin: 40px 0;
+    margin: 20px 0;
+    gap: 16px;;
     opacity: 0; /* 最初は非表示 */
     animation: fadeInIllustratorName 1.5s ease-out 4.5s forwards; /* 4.5秒後にフェードイン */
+}
+
+.item {
+    display: flex; /* 各列を均等に配置 */
+    padding: 0 5px; /* 各列の左右に余白を追加 */
+    text-align: center; /* 各列のテキストを中央揃え */
+    align-items: center; /* 縦方向の中央揃え */
+    vertical-align: middle;
 }
 
 .qr-image {
